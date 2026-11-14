@@ -15,6 +15,7 @@ object DeviceInfoUtils : SettingsLibDeviceInfoUtils() {
     private const val PROP_ALLOW_MAJOR_UPGRADES = "lineage.updater.allow_major_upgrades"
     private const val PROP_BUILD_DATE = "ro.build.date.utc"
     private const val PROP_BUILD_VERSION = "ro.lineage.build.version"
+    private const val PROP_DRIFTVANE_VERSION = "ro.driftvane.build.version"
     private const val PROP_BUILD_VERSION_INCREMENTAL = "ro.build.version.incremental"
     private const val PROP_DEVICE = "ro.lineage.device"
     private const val PROP_NEXT_DEVICE = "ro.updater.next_device"
@@ -35,6 +36,13 @@ object DeviceInfoUtils : SettingsLibDeviceInfoUtils() {
 
     @JvmStatic
     val buildVersion: String = SystemProperties.get(PROP_BUILD_VERSION, "")
+
+    /**
+     * DriftVaneOS version shown to the user (e.g. "1.0"). [buildVersion] is still the
+     * LineageOS version and is what update compatibility checks use.
+     */
+    @JvmStatic
+    val displayVersion: String = SystemProperties.get(PROP_DRIFTVANE_VERSION, buildVersion)
 
     @JvmStatic
     val buildVersionIncremental: String = SystemProperties.get(PROP_BUILD_VERSION_INCREMENTAL, "")
